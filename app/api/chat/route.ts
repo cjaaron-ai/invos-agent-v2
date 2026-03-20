@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { buildDataSummary } from '@/lib/invoice-data'
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || ''
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`
+const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`
 
 const SYSTEM_PROMPT = `你是 Invos AI 助手，一個專業的消費分析 AI Agent。你的任務是幫助用戶分析他們的發票消費數據，提供洞察和省錢建議。
 
