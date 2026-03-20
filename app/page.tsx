@@ -103,8 +103,22 @@ export default function Home() {
                     : 'bg-gray-50 border border-gray-200 text-gray-800 rounded-2xl rounded-bl-sm'
                 }`}>
                   {msg.role === 'assistant' ? (
-                    <div className="markdown-body">
-                      <ReactMarkdown>{msg.content}</ReactMarkdown>
+                    <div>
+                      <ReactMarkdown
+                        components={{
+                          h3: ({children}) => <h3 style={{fontSize:'0.95rem',fontWeight:700,marginTop:'0.75rem',marginBottom:'0.375rem'}}>{children}</h3>,
+                          h4: ({children}) => <h4 style={{fontSize:'0.85rem',fontWeight:700,marginTop:'0.5rem',marginBottom:'0.25rem'}}>{children}</h4>,
+                          p: ({children}) => <p style={{margin:'0.375rem 0'}}>{children}</p>,
+                          ul: ({children}) => <ul style={{paddingLeft:'1.25rem',margin:'0.375rem 0'}}>{children}</ul>,
+                          ol: ({children}) => <ol style={{paddingLeft:'1.25rem',margin:'0.375rem 0'}}>{children}</ol>,
+                          li: ({children}) => <li style={{margin:'0.125rem 0'}}>{children}</li>,
+                          strong: ({children}) => <strong style={{fontWeight:700,color:'#111827'}}>{children}</strong>,
+                          table: ({children}) => <table style={{width:'100%',borderCollapse:'collapse',fontSize:'0.75rem',margin:'0.5rem 0'}}>{children}</table>,
+                          th: ({children}) => <th style={{textAlign:'left',padding:'0.375rem 0.5rem',borderBottom:'2px solid #e5e7eb',fontWeight:600,color:'#374151',background:'#f9fafb'}}>{children}</th>,
+                          td: ({children}) => <td style={{padding:'0.375rem 0.5rem',borderBottom:'1px solid #f3f4f6'}}>{children}</td>,
+                          hr: () => <hr style={{margin:'0.75rem 0',borderColor:'#e5e7eb'}} />,
+                        }}
+                      >{msg.content}</ReactMarkdown>
                     </div>
                   ) : (
                     <span className="whitespace-pre-wrap">{msg.content}</span>
