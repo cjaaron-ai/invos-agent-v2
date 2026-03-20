@@ -103,7 +103,7 @@ export default function Home() {
                     : 'bg-gray-50 border border-gray-200 text-gray-800 rounded-2xl rounded-bl-sm'
                 }`}>
                   {msg.role === 'assistant' ? (
-                    <div className="prose prose-sm prose-gray max-w-none prose-p:my-1.5 prose-li:my-0.5 prose-headings:mt-3 prose-headings:mb-1.5 prose-strong:text-gray-900 prose-table:text-xs">
+                    <div className="markdown-body">
                       <ReactMarkdown>{msg.content}</ReactMarkdown>
                     </div>
                   ) : (
