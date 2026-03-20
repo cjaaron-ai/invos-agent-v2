@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "site": "invos-agent-v2",
+    "source": ".",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "frameworksBackend": {
+      "region": "asia-east1"
+    }
+  }
+}
