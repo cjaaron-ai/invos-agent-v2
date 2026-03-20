@@ -8,6 +8,7 @@ interface Message {
 }
 
 const TOPICS = [
+  { id: 'detective', emoji: '🔍', label: '隱形訂閱偵探', prompt: '請幫我找出所有隱形訂閱！掃描我的發票記錄，找出所有固定扣款和疑似訂閱，特別標記那些我可能已經忘記或不再使用的服務。告訴我每月被扣了多少、哪些可能是浪費的、取消後每年可以省多少。' },
   { id: 'insight', emoji: '💬', label: '消費 Insight', prompt: '請分析我過去 3 個月的消費習慣，包括每月總花費、消費類別分布、最常去的店家，以及你注意到的消費趨勢和模式。' },
   { id: 'subscription', emoji: '🔄', label: '訂閱費分析', prompt: '請找出我所有的訂閱服務和固定月費（包括 YouTube、ChatGPT、Uber One、電信、App 訂閱、水電瓦斯等），計算每月和年度總成本，並分析哪些可能不值得繼續付費。' },
   { id: 'save', emoji: '💰', label: '省錢建議', prompt: '根據我的消費資料，請給我具體的省錢建議。分析我在外送、外食、訂閱等方面的支出，找出可以優化的地方，並計算如果執行建議每月能省多少。' },
