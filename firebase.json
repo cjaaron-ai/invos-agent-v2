@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "invos-agent-v2",
+    "site": "invos-ai",
     "source": ".",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "frameworksBackend": {
