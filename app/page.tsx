@@ -8,10 +8,10 @@ interface Message {
 }
 
 const TOPICS = [
-  { id: 'detective', emoji: '🔍', label: '隱形訂閱偵探', prompt: '請幫我找出所有隱形訂閱！掃描我的發票記錄，找出所有固定扣款和疑似訂閱，特別標記那些我可能已經忘記或不再使用的服務。告訴我每月被扣了多少、哪些可能是浪費的、取消後每年可以省多少。' },
-  { id: 'insight', emoji: '💬', label: '消費 Insight', prompt: '請分析我過去 3 個月的消費習慣，包括每月總花費、消費類別分布、最常去的店家，以及你注意到的消費趨勢和模式。' },
-  { id: 'subscription', emoji: '🔄', label: '訂閱費分析', prompt: '請找出我所有的訂閱服務和固定月費（包括 YouTube、ChatGPT、Uber One、電信、App 訂閱、水電瓦斯等），計算每月和年度總成本，並分析哪些可能不值得繼續付費。' },
-  { id: 'save', emoji: '💰', label: '省錢建議', prompt: '根據我的消費資料，請給我具體的省錢建議。分析我在外送、外食、訂閱等方面的支出，找出可以優化的地方，並計算如果執行建議每月能省多少。' },
+  { id: 'scan', emoji: '🔍', label: '掃描我的訂閱', prompt: '請掃描我的發票，找出所有訂閱和固定扣款！特別標記那些我可能忘記了或不再使用的服務，告訴我每月被扣了多少、哪些在浪費錢、取消後每年能省多少。' },
+  { id: 'cancel', emoji: '✂️', label: '幫我取消訂閱', prompt: '根據掃描結果，列出你建議我取消的訂閱，並提供每一個的完整取消步驟。如果需要寫 Email 就幫我寫好，需要打電話就給我話術腳本。讓我可以直接照著做。' },
+  { id: 'cost', emoji: '💰', label: '訂閱花費總覽', prompt: '幫我算一下我每月和每年花了多少錢在訂閱服務上，分類列出（影音/音樂/AI工具/外送/電信/App），並跟合理的水準比較，告訴我花太多的地方。' },
+  { id: 'insight', emoji: '💬', label: '消費 Insight', prompt: '請分析我過去 3 個月的整體消費習慣，包括每月總花費、消費類別分布、最常去的店家，以及你注意到的趨勢和省錢機會。' },
 ]
 
 export default function Home() {
@@ -55,10 +55,10 @@ export default function Home() {
     <div className="flex flex-col h-dvh max-w-2xl mx-auto bg-white">
       {/* Header */}
       <header className="flex items-center gap-3 px-5 py-3.5 border-b border-gray-100 bg-white shrink-0">
-        <div className="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center text-white text-base">🤖</div>
+        <div className="w-9 h-9 rounded-full bg-red-500 flex items-center justify-center text-white text-base">✂️</div>
         <div className="flex-1">
-          <h1 className="text-base font-bold text-gray-900">Invos AI 助手</h1>
-          <p className="text-[11px] text-gray-400">114/12 ~ 115/02 發票分析</p>
+          <h1 className="text-base font-bold text-gray-900">Invos 訂閱管家</h1>
+          <p className="text-[11px] text-gray-400">掃描訂閱 · 一鍵取消 · 幫你省錢</p>
         </div>
         {started && (
           <button onClick={() => { setMessages([]); setStarted(false) }} className="text-xs text-gray-400 hover:text-gray-600 px-2 py-1">
@@ -72,10 +72,10 @@ export default function Home() {
         {!started ? (
           <div className="flex flex-col items-center justify-center h-full gap-6 pb-8">
             <div className="text-center">
-              <div className="text-4xl mb-3">🤖</div>
-              <h2 className="text-lg font-bold text-gray-800">嗨！我是 Invos AI 助手</h2>
+              <div className="text-4xl mb-3">✂️</div>
+              <h2 className="text-lg font-bold text-gray-800">嗨！我是你的訂閱管家</h2>
               <p className="text-sm text-gray-400 mt-1.5 leading-relaxed">
-                已載入你 3 個月的發票資料<br/>選一個主題，或直接問我
+                我已掃描你 3 個月的發票<br/>幫你找出隱形訂閱，一鍵取消省錢
               </p>
             </div>
             <div className="flex flex-col gap-2.5 w-full max-w-xs">
@@ -96,7 +96,7 @@ export default function Home() {
             {messages.map((msg, i) => (
               <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'} gap-2`}>
                 {msg.role === 'assistant' && (
-                  <div className="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs mt-0.5 shrink-0">🤖</div>
+                  <div className="w-7 h-7 rounded-full bg-red-500 flex items-center justify-center text-white text-xs mt-0.5 shrink-0">✂️</div>
                 )}
                 <div className={`max-w-[85%] px-3.5 py-2.5 text-sm leading-relaxed ${
                   msg.role === 'user'
@@ -130,7 +130,7 @@ export default function Home() {
 
             {loading && (
               <div className="flex justify-start gap-2">
-                <div className="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs mt-0.5 shrink-0">🤖</div>
+                <div className="w-7 h-7 rounded-full bg-red-500 flex items-center justify-center text-white text-xs mt-0.5 shrink-0">✂️</div>
                 <div className="bg-gray-50 border border-gray-200 rounded-2xl rounded-bl-sm px-4 py-3">
                   <div className="flex gap-1">
                     <div className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
